@@ -1,0 +1,75 @@
+#include <cmath>
+#include <vector>
+#include <iostream>
+#include <string>
+using namespace std; 
+
+
+class correlation{
+    
+public:    
+    double r = 0;
+    
+    double numbers = 5; 
+    double D1[5] = {2,5,7,8,9};
+    double D2[5] = {3,7,9,12,15};
+    
+    
+    double solve();  
+    
+};
+
+
+double correlation :: solve(){ 
+    double n = 1/(numbers-1); 
+    
+    double sum1 = 0;
+    double sum2 = 0; 
+    double mean1 = 0; 
+    double mean2 = 0;
+    
+    double stdev1 = 0;
+    double stdev2 = 0;
+    
+    double range1 = 0;
+    double range2 =0;
+    
+    double numerator = 0;
+    
+    for(int i =0; i<numbers; i++){ 
+      sum1 += D1[i]; 
+      sum2 += D2[i];
+    }
+    
+    mean1 = sum1/numbers;
+    mean2 = sum2/numbers; 
+    
+    for(int i = 0; i<numbers; i++){ 
+        
+        range1 = D1[i]-mean1;
+        range2 = D2[i]-mean2;
+        numerator +=range1*range2;
+        
+        
+        stdev1 +=pow((D1[i] - mean1),2);
+        stdev2 +=pow((D2[i] - mean2),2);
+    }
+    
+    stdev1 = sqrt((n*stdev1));
+    stdev2 = sqrt((n*stdev2));
+    
+    
+    r = n*(numerator/(stdev1*stdev2));
+    return r;     
+}
+
+
+int main()
+{
+    correlation x; 
+    double corr = x.solve(); 
+    
+    cout<<corr; 
+    
+return 0; 
+}
