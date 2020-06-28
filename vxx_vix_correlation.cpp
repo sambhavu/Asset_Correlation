@@ -1,3 +1,4 @@
+#output .57
 #include <cmath>
 #include <vector>
 #include <iostream>
